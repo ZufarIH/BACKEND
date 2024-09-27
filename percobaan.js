@@ -21,3 +21,5 @@ http.createServer(function(request, response){
 // cara masukin ke repo git
 // status ijo (U/Untrack) tanda bikin file baru di git = git init
 // status (A/add) = git add .
+// urutan awal, git init > git add . > git commit -m "komen" > git branch - M main > git remote add origin https://github.com/ZufarIH/BACKEND.git > git push
+// kalo normalnya, git add . > git commit -m "komen" > git push
