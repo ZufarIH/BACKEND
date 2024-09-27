@@ -23,3 +23,6 @@ http.createServer(function(request, response){
 // status (A/add) = git add .
 // urutan awal, git init > git add . > git commit -m "komen" > git branch - M main > git remote add origin https://github.com/ZufarIH/BACKEND.git > git push
 // kalo normalnya, git add . > git commit -m "komen" > git push
+
+// kalo mau ngebalikin source code pakek (git reset --hard) terus copy paste full SHA kodenya dari git hub ke sebelahnya 
+// git reset soft berubah cmn bisa kelihatan perubahaannya di visual code
