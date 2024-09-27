@@ -17,4 +17,7 @@ http.createServer(function(request, response){
 })
 // node percobaan.js (buat nyalain) (pakek per)
 // ctrl+C buat matiin server
-// status ijo (U/Untrack) tanda bikin file baru di git
+// jangan lupa daftarin dulu email dan username (git config --global user.email "zufar.zih@gmail.com")(git config --global user.name "ZufarIH")
+// cara masukin ke repo git
+// status ijo (U/Untrack) tanda bikin file baru di git = git init
+// status (A/add) = git add .
