@@ -9,3 +9,6 @@ console.log(DP.nama_Depan)
 console.log(DP.alamat) 
 // contoh langsung pakek require dari file induknya
 console.log(require('./DataPribadi').nama_Lengkap)
+
+// di package json bisa lgsg tulis npm i di terminal biar bisa lgsg samain instaler yang sama
+
