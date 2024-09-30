@@ -34,6 +34,8 @@ http.createServer(function(request, response){
             <li>Email: Zufar@gmail.com  </li>
             `
     )} 
+
+    // selalu liat besar kecil hurufnya
     // untuk menangani URL yang tidak ada
     else{
         response.end("<h1>404: Halaman Ini Tidak Ada</h1><hr>")
