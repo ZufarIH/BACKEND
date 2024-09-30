@@ -14,7 +14,13 @@ http.createServer(function(request, response){
     // 200 itu kode http
     // text/plain berati text mentah
     // kalo diubah jadi text/html maka berubah jadi text pengubah frontend (html)
-    response.end(`<h1>Selamat datang di website</h1><hr>`)
+    response.end(
+        `<h1>Selamat datang di website</h1><hr>
+        <a href="/profil">Lihat Profil</a>
+        <br>
+        <a href="/kontak">Lihat Kontak</a>
+        `
+    )
     }
 
     // halaman profil
@@ -30,6 +36,9 @@ http.createServer(function(request, response){
         <li>Pekerjaan      : Pengusaha </li>
         <li>Tanggal Lahir  : 1 Januari ${tahun_lahir} </li>
         <li>umur           : ${umur}</li>
+    </ul>
+    <br>
+    <a href="/">Balik ke Utama</a>
     `
     )}
     // halaman kontak
@@ -44,6 +53,9 @@ http.createServer(function(request, response){
             <li>WA   : ${contact.wa} </li>
             <li>Email: ${contact.email}  </li>
             <li>ig: ${contact.ig}  </li>
+            </ul>
+            <br>
+            <a href="/">Balik ke Utama</a>
             `
     )} 
 
