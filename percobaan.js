@@ -26,6 +26,7 @@ http.createServer(function(request, response){
         <li>Pekerjaan      : Pengusaha </li>
     `
     )}
+    // untuk menangani URL yang tidak ada
     else{
         response.end("<h1>404: Halaman Ini Tidak Ada</h1><hr>")
     }
