@@ -26,6 +26,14 @@ http.createServer(function(request, response){
         <li>Pekerjaan      : Pengusaha </li>
     `
     )}
+    // halaman kontak
+    else if(request.url=="/kontak"){
+        response.end(
+            `<ul>
+            <li>WA   : 08991112001 </li>
+            <li>Email: Zufar@gmail.com  </li>
+            `
+    )} 
     // untuk menangani URL yang tidak ada
     else{
         response.end("<h1>404: Halaman Ini Tidak Ada</h1><hr>")
