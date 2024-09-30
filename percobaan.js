@@ -4,12 +4,31 @@
 //const http=require(`http`)
 const http=require(`http`)
 http.createServer(function(request, response){
+    console.log(request.url)
+    response.writeHead(200, {"Content-type": "text/html"})
+
+    // halaman utama
+    if(request.url=="/"){
     // writehead buat ngasih status
     // 200 itu kode http
     // text/plain berati text mentah
     // kalo diubah jadi text/html maka berubah jadi text pengubah frontend (html)
-    response.writeHead(200, {"Content-type": "text/html"})
-    response.end(`<h1>ello, this script is generated from backend node.js-Ip</h1><hr>`)
+    response.end(`<h1>Selamat datang di website</h1><hr>`)
+    }
+
+    // halaman profil
+    else if(request.url=="/profil"){
+        response.end(
+    `<ul>
+        <li>Nama lengkap   : Zufar Irving </li>
+        <li>Nama panggilan : Zufar </li>
+        <li>Alamat         : Depok </li>
+        <li>Pekerjaan      : Pengusaha </li>
+    `
+    )}
+    else{
+        response.end("<h1>404: Halaman Ini Tidak Ada</h1><hr>")
+    }
     // dalam kurung kriting {} gak bisa pakek Bactick (``) harus pakek tanda petik
     // jgn lupa terminal di ganti ke gitbash (buat percobaan)
 }).listen(3000, function(){
