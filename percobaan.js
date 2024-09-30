@@ -2,6 +2,7 @@
 // untuk membuat server http
 // https kalo udah secure
 //const http=require(`http`)
+// buat nyalain server di gitbash pakek node nama file
 const http=require(`http`)
 http.createServer(function(request, response){
     console.log(request.url)
@@ -18,24 +19,34 @@ http.createServer(function(request, response){
 
     // halaman profil
     else if(request.url=="/profil"){
+        let tahun_lahir = 1999
+        let tahun_ini = 2024
+        let umur = tahun_ini-tahun_lahir
         response.end(
     `<ul>
         <li>Nama lengkap   : Zufar Irving </li>
         <li>Nama panggilan : Zufar </li>
         <li>Alamat         : Depok </li>
         <li>Pekerjaan      : Pengusaha </li>
+        <li>Tanggal Lahir  : 1 Januari ${tahun_lahir} </li>
+        <li>umur           : ${umur}</li>
     `
     )}
     // halaman kontak
     else if(request.url=="/kontak"){
+        let contact={
+            wa:"081112001",
+            email:"zufar@gmail.com",
+            ig:"@ggaga",
+        }
         response.end(
             `<ul>
-            <li>WA   : 08991112001 </li>
-            <li>Email: Zufar@gmail.com  </li>
+            <li>WA   : ${contact.wa} </li>
+            <li>Email: ${contact.email}  </li>
+            <li>ig: ${contact.ig}  </li>
             `
     )} 
 
-    
     // selalu liat besar kecil hurufnya
     // untuk menangani URL yang tidak ada
     else{
