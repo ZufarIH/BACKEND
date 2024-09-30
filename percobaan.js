@@ -4,23 +4,21 @@
 //const http=require(`http`)
 // buat nyalain server di gitbash pakek node nama file
 const http=require(`http`)
+const fs=require("fs")
+
 http.createServer(function(request, response){
     console.log(request.url)
     response.writeHead(200, {"Content-type": "text/html"})
 
     // halaman utama
+    // ini kalo pakek fs
     if(request.url=="/"){
     // writehead buat ngasih status
     // 200 itu kode http
     // text/plain berati text mentah
     // kalo diubah jadi text/html maka berubah jadi text pengubah frontend (html)
-    response.end(
-        `<h1>Selamat datang di website</h1><hr>
-        <a href="/profil">Lihat Profil</a>
-        <br>
-        <a href="/kontak">Lihat Kontak</a>
-        `
-    )
+    // pipe dibuat untuk pemanggilan
+        fs.createReadStream("./View/HalamanUtama.html").pipe(response)
     }
 
     // halaman profil
