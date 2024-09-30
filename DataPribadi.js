@@ -9,9 +9,9 @@
 // }
 
 // penuisan ke 2 dijadiin object semua
-    let nama_Depan ="Sakuya",
-    let nama_Belakang ="Izayoi",
+let nama_Depan ="Sakuya"
+let nama_Belakang ="Izayoi"
 module.exports={
-    nama_Lengkap: this.nama_Depan+" "+this.nama_Belakang,
+    nama_Lengkap: nama_Depan+" "+nama_Belakang,
     alamat:"Scarlet Manor",
 }
