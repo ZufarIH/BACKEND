@@ -48,6 +48,7 @@ http.createServer(async function(request, response){
         let html_ListKaryawan=""
         for (const i in data) {
             // jgn lupa kalo += berati looping ke diri sendiri
+            // new date var. toLocaleDateString('id-ID') biar waktunya ilang
             html_ListKaryawan+=
             `<b>Nama Lengkap</b>    : ${data[i].nama} <br>
             <b>NIK</b>              : ${data[i].NIK} <br>
