@@ -45,14 +45,24 @@ http.createServer(async function(request, response){
         // tarik data dari db (database)
         // await disini
         let data=await getAll_karyawan()
+        let html_ListKaryawan=""
+        for (const i in data) {
+            // jgn lupa kalo += berati looping ke diri sendiri
+            html_ListKaryawan+=
+            `<b>Nama Lengkap</b>    : ${data[i].nama} <br>
+            <b>NIK</b>              : ${data[i].NIK} <br>
+            <b>Tanggal Lahir</b>    : ${new Date (data[i].Tanggal_Lahir).toLocaleDateString('id-ID')} <br>
+            <b>Alamat</b>           : ${data[i].Alamat} <br>
+            <b>Jabatan </b>         : ${data[i].Jabatan} <br>
+            <b>Agama</b>            : ${data[i].Agama} <br>
+            <br>`
+        }
         response.end(
             `<h1>Data penghuni gunung</h1>
             <hr>
-            Nama Lengkap: ${data[0].nama} <br>
-            Nomor Induk Karyawan: ${data[0].NIK} <br>
-            <pre>
-            ${JSON.stringify(data,null,4)}
-            </pre>`
+            ${html_ListKaryawan}
+            `
+            // <pre></pre> buat biar data mentah ditampilin rapih
             // JSON buat ngedebug aja
         )
 
