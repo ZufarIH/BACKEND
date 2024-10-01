@@ -24,7 +24,16 @@ db.connect((error)=>{
 // async + await di paksa ke selanjutnya
 function getAll_karyawan(){
     return new Promise((resolve, reject)=>{
-        db.query('SELECT * FROM karyawan2', function(errorSql, hasil){
+
+        db.query(
+        `SELECT 
+            kry.*,jbt.nama as jabatan_nama, 
+            jbt.Singkatan as jabatan_singkatan,
+            agm.nama as agama_nama
+        FROM karyawan2 as kry
+        LEFT JOIN jabatan as jbt ON jbt.id = kry.Jabatan
+        LEFT JOIN agama as agm ON agm.id = kry.Agama;`, 
+        function(errorSql, hasil){
         if(errorSql){
              reject(errorSql) 
         }else{
@@ -54,8 +63,8 @@ http.createServer(async function(request, response){
             <b>NIK</b>              : ${data[i].NIK} <br>
             <b>Tanggal Lahir</b>    : ${new Date (data[i].Tanggal_Lahir).toLocaleDateString('id-ID')} <br>
             <b>Alamat</b>           : ${data[i].Alamat} <br>
-            <b>Jabatan </b>         : ${data[i].Jabatan} <br>
-            <b>Agama</b>            : ${data[i].Agama} <br>
+            <b>Jabatan </b>         : ${(data[i].Jabatan)? data[i].jabatan_nama : '-' } <br>
+            <b>Agama</b>            : ${(data[i].Agama)? data[i].agama_nama : '-'} <br>
             <br>`
         }
         response.end(
