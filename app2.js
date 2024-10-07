@@ -1,6 +1,7 @@
 const express   = require('express')
 const app       = express()
 const mysql     = require('mysql2')
+const moment    = require('moment')
 const {body, query, validationResult} = require('express-validator')
 
 // sambungkan ke mysql
@@ -156,6 +157,8 @@ let formValidasiInsert = [
     // req.body.nama_form   => ambil satuan inputan dari form
 app.post('/karyawan/proses-insert-data', formValidasiInsert, async function(req,res) {
     const errors = validationResult(req)
+    // bisa nambah validasi buat sesuatu yang sama disini
+
     // jika lolos validasi
     if (errors.isEmpty()) {
         // in case request params meet the validation criteria
@@ -186,7 +189,22 @@ app.post('/karyawan/proses-insert-data', formValidasiInsert, async function(req,
 
 })
 
+// *cara baru
+// function insert_karyawan( req ) {
+//     return new Promise( (resolve, reject) => {
+//         let sqlSyntax =
+//         `INSERT INTO karyawan SET ?`
 
+//         let sqlData = {
+//             nama            : req.body.form_nama,
+//             nik             : req.body.form_nik,
+//             tanggal_lahir   : req.body.form_tanggal_lahir,
+//             alamat          : req.body.form_alamat,
+//             jabatan         : req.body.form_jabatan,
+//             agama           : req.body.form_agama,
+//         }
+
+// *cara lama
 function insert_karyawan( req ) {
     return new Promise( (resolve, reject) => {
         let sqlSyntax =
@@ -243,6 +261,52 @@ app.get('/karyawan/hapus/:id_karyawan', async function(req,res) {
         throw error
     }
 })
+
+
+// Buat bikin Edit
+app.get('/karyawan/edit/:id_karyawan', async function(req,res) {
+    let data = {
+        satukaryawan: await getOne_karyawan( req.params.id_karyawan ),
+        jabatan: await getAll_jabatan(),
+        agama: await getAll_agama(),
+        moment: moment,
+    }
+    res.render('page-karyawan-form-edit',data)
+})
+
+app.post('/karyawan/proses-update-data/:id_karyawan', async function(req,res) {
+    try {
+        let update = await update_karyawan( req )
+        if (update.affectedRows > 0) {
+            res.redirect('/karyawan?notif=Berhasil perbarui data karyawan')
+        }
+    } catch (error) {
+    }
+})
+
+function update_karyawan(req) {
+    return new Promise( (resolve, reject) => {
+        let sqlSyntax =
+        `UPDATE karyawan2 SET ? WHERE id = ?`
+
+        let sqlData = {
+            nama            : req.body.form_nama,
+            nik             : req.body.form_nik,
+            tanggal_lahir   : req.body.form_tanggal_lahir,
+            alamat          : req.body.form_alamat,
+            jabatan         : req.body.form_jabatan,
+            agama           : req.body.form_agama,
+        }
+
+        db.query(sqlSyntax, [sqlData, req.params.id_karyawan], function(errorSql, hasil) {
+            if (errorSql) {
+                reject(errorSql)
+            } else {
+                resolve(hasil)
+            }
+        })
+    })
+}
 
 app.listen(3000, ()=>{
     console.log('Server aktif, buka http://localhost:3000')
